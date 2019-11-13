@@ -1,0 +1,4 @@
+{
+    string str = "hello";
+    printf(str);
+}

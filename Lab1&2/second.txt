@@ -1,0 +1,12 @@
+>=
+{
+    string str = "Ana are mere";
+    float a = -100 + 2;
+    int i = 2;
+    if( i >= 0)
+    {
+        printf(i);
+    }
+    scanf(a);
+    printf(str);
+}
