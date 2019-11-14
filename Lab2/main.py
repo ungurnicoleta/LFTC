@@ -17,7 +17,7 @@ if __name__ == '__main__':
 
     cmd = int(input("Choose a command: "))
     if cmd == 1:
-        mg = MenuGrammar("grammar.in")
+        mg = MenuGrammar("grammar1")
         mg.run()
     if cmd == 2:
         mfa = MenuFiniteAutomata("automaton.in")

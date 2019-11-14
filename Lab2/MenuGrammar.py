@@ -12,7 +12,8 @@ class MenuGrammar(object):
             '3': 'Get the starting symbol',
             '4': 'Get set of productions',
             '5': 'Get the productions of a given non-terminal symbol',
-            '6': 'Constructs the corresponding FA'
+            '6': 'Constructs the corresponding FA',
+            '7': 'Check if regular'
         }
         for key, val in menuGrammar.items():
             print('\t' + key + " " + val)
@@ -36,7 +37,12 @@ class MenuGrammar(object):
                 print(gr.getProductionsForAGivenNonTerminal(cmd2))
             if cmd == 6:
                 print(gr.getFA())
-            if cmd > 6 or cmd < 0:
+            if cmd == 7:
+                if gr.isRegular():
+                    print("\nThe grammar is regular\n")
+                else:
+                    print("\nThe grammar is not regular\n")
+            if cmd > 7 or cmd < 0:
                 print("Choose a valid command: ")
             if cmd == 0:
                 return

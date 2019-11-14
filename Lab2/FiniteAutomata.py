@@ -53,7 +53,7 @@ class FiniteAutomata(object):
             # read the remaining lines => the transitions
             for line in f:
                 transition_line = line.strip('\n').split(',')
-                print(transition_line[0]+  " " +  transition_line[1] + " " + transition_line[2:].__str__())
+                # print(transition_line[0]+  " " +  transition_line[1] + " " + transition_line[2:].__str__())
                 if transition_line[0] and transition_line[1] not in self.__states:
                     raise UnknownSymbol("Check the transition to be correct!!!")
                 self.__transitions.append(Transition(transition_line[0], transition_line[1], transition_line[2:]))
@@ -120,6 +120,6 @@ class FiniteAutomata(object):
                     rules[transition.getFirstState()].append(string)
                     rules[transition.getFirstState()].append(symbol)
         if self.__init_state[0] in self.__final_states:
-            rules[self.__init_state[0]].append(' ')
+            rules[self.__init_state[0]].append('E')
 
         return Converter(starting_symbol, non_terminals, terminals, rules).__str__()

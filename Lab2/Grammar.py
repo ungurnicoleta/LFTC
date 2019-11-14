@@ -86,13 +86,8 @@ class Grammar(object):
             return False
         return True
 
-    def isNonTerminal(self, non_terminal):
-        if non_terminal not in self.getNonTerminals():
-            return False
-        return True
-
     def isTerminal(self, terminal):
-        if terminal not in self.getTerminals():
+        if terminal not in self.getTerminals() and terminal != 'E':
             return False
         return True
 
@@ -110,6 +105,46 @@ class Grammar(object):
             raise UnknownNonTerminal("This is not a non-terminal")
         return self.__rules[nonTerminal]
 
+    def isProductionRegular(self, production):
+        if len(production) > 2:
+            return False
+        if len(production) == 1:
+            if not self.isTerminal(production[0]):
+                return False
+            return True
+        else:
+            if not self.isTerminal(production[0]):
+                return False
+            if not self.isNonTerminal(production[1]):
+                return False
+            return True
+
+    def isS_RHS(self):
+        if 'E' in self.__rules[self.__start_symbol]:
+            for key, value in self.__rules.items():
+                for production in value:
+                    if key != self.__start_symbol and self.__start_symbol in production:
+                        return False
+        return True
+
+    def validate_production(self, productions):
+        for production in productions:
+            for symbol in production:
+                is_terminal = self.isTerminal(symbol)
+                is_non_terminal = self.isNonTerminal(symbol)
+
+                if not is_terminal and not is_non_terminal:
+                    raise UnknownSymbol("Unknown symbol: " + symbol)
+
+    def isRegular(self):
+        for key, value in self.__rules.items():
+            for production in value:
+                if not self.isProductionRegular(production):
+                    return False
+                if key != self.__start_symbol and production == 'E':
+                    return False
+        return self.isS_RHS()
+
     def getFA(self):
         initial_state = self.__start_symbol
         alphabet = self.__terminals
@@ -123,7 +158,7 @@ class Grammar(object):
                 if len(prod) == 2:
                     transitions.append(Transition(non_terminal, prod[1], [prod[0]]).__str__())
                 else:
-                    if prod[0] == ' ' and self.__start_symbol not in final_states:
+                    if prod[0] == 'E' and self.__start_symbol not in final_states:
                         final_states.append(self.__start_symbol)
                         continue
                     if 'K' not in states:
@@ -134,7 +169,7 @@ class Grammar(object):
 
         fa = FiniteAutomata("")
         fa.setAlphabet(alphabet)
-        fa.getFinalStates()
+        fa.setFinalStates(final_states)
         fa.setStates(states)
         fa.setTransitions(transitions)
         fa.setInitState(initial_state)
