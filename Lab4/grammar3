@@ -1,0 +1,44 @@
+A,B,C,D,Z,F,G,H,K,L,M,N,O,P,Q,R,S,T,U,W,X
+i,c,d,f,k,s,a,g,r,w,r,;,=,+,-,e,n,>,<,/,*,%,[,],{,},(,),.,",',~,$
+A
+A -> B
+B -> { }
+B -> { C }
+C -> D
+C -> D C
+D -> Z ;
+D -> F ;
+D -> H ;
+Z -> K
+F -> O
+H -> S
+H -> T
+K -> N i
+O -> i = R
+R -> M
+R -> M Q M
+M -> L
+M -> L G L
+L -> i
+L -> c
+L -> R
+S -> r ( i )
+T -> w ( R )
+U -> R X R
+N -> d
+N -> f
+N -> k
+W -> +
+W -> -
+W -> /
+W -> *
+W -> %
+X -> e
+X -> n
+X -> >
+X -> <
+G -> /
+G -> *
+G -> %
+Q -> +
+Q -> -

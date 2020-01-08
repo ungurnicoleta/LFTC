@@ -1,0 +1,8 @@
+N,M,T,K,F
+a,+, *,(,), i, $
+N
+N -> TM
+M -> +TM|a
+T -> FK
+K -> *FK|a
+F -> i |(N)

@@ -1,0 +1,109 @@
+Grammar (N,E,P,S)
+
+(N) Nonterminals:
+
+	A //program
+	B //compound_statement
+	C //statement_list
+	D //statement
+	E //declaration
+	F //assignment
+	G //high_priority_arithmetic_operator
+	H //io_statement
+	I //loop
+	J //if_statement
+	K //var_declaration
+	L //fact
+	M //term
+	N //type
+	O //var_assignment
+	P //array_assignment
+	Q //low_priority_arithmetic_operator
+	R //expr
+	S //input
+	T //output
+	U //condition
+	V //sign
+	W //operator
+	X //relational_operator
+
+
+(E) Terminals:
+	0 1 2 3 ... 36
+
+
+(P) Productions:
+
+	A -> B
+	B -> 29.30 | 29.C.30
+	C -> D | D.C
+	D -> E.14 | F.14 | H.14 | I.14 | J.14
+	E -> K
+	F -> O
+	H -> S | T
+	I -> 12.31.U.32.B
+	J -> 10.31.U.32.B | 10.31.U.32.B.11.B
+	K -> N.0
+	O -> 0.15.R
+	R -> M | M.Q.M
+	M -> L | L.G.L
+	L -> 0 | 1 | R
+	S -> 8.31.0.32
+	T -> 9.31.R.32
+	U -> R.X.R
+	N -> 2 | 3 | 4 | 54
+	V -> 16 | 17
+	W -> 16 | 17 | 24 | 25 | 26
+	X -> 18 | 19  | 20 | 21 | 22 | 23
+	G -> 24 | 25 | 26
+	Q -> 16 | 17
+
+
+
+ R = M | M.Q.M
+ 
+ M = L | L.G.L
+ 
+ L = 0 | 1 | R
+
+(S) Starting symbol: A
+
+
+//Codification
+identifier -> 0
+constant -> 1
+int -> 2
+float -> 3
+char -> 4
+string -> 5
+array -> 6
+struct -> 7
+scanf -> 8
+printf -> 9
+if -> 10
+else -> 11
+while -> 12
+return -> 13
+; -> 14
+= -> 15
++ -> 16
+- -> 17
+== -> 18
+!= -> 19
+< -> 20
+> -> 21
+<= -> 22
+>= -> 23
+/ -> 24
+* -> 25
+% -> 26
+] -> 27
+[ -> 28
+{ -> 29
+} -> 30
+( -> 31
+) -> 32
+. -> 33
+" -> 34
+' -> 35
+, -> 36
